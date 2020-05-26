@@ -1,0 +1,33 @@
+<div class="card m-3">
+    <h5 class="card-header">Angular 9 Reactive Form Validation</h5>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label>Title</label>
+                    <select formControlName="title" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                        <option value=""></option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Ms">Ms</option>
+                    </select>
+                </div>
+                <div class="form-group col-12">
+                    <label>First Name</label>
+                    <input type="text" formControlName="firstName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                </div>
+                <div class="form-group col-12">
+                    <label>Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary mr-1" type="submit">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
