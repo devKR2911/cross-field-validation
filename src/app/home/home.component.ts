@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidator } from 'src/shared/validators/custom-validator';
 
 @Component({
   selector: 'app-home',
@@ -12,14 +13,17 @@ export class HomeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-  });
+      this.registerForm = this.formBuilder.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        passsword: [''],
+        confirm_passsword: [''],
+    }, {validator: CustomValidator.passwordValidator});
   }
 
   onSubmit() {
+    this.submitted = true;
+    console.log('Form?', this.registerForm.errors); // true or false
     console.log('Valid?', this.registerForm.valid); // true or false
     console.log('Value', this.registerForm.value);
   }
