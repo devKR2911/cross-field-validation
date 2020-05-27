@@ -1,18 +1,26 @@
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 export class CustomValidator {
-    static passwordValidator(formGroup: FormGroup): ValidationErrors | null {
-        const password = formGroup.controls.passsword;
-        const confirmPassword = formGroup.controls.confirm_passsword;
-        if (password && confirmPassword) {
-            if (password.value !== confirmPassword.value) {
-                password.setErrors({ 'password_mismatch': true });
-                confirmPassword.setErrors({ 'password_mismatch': true });
-                return { 'password_mismatch': true };
-            } else {
-                password.setErrors({ 'password_mismatch': null });
-                confirmPassword.setErrors({ 'password_mismatch': null });
-                return null;
+    static passwordValidator(form_ctrl_one, form_ctrl_two) {
+        return (fg: FormGroup) => {
+            const fieldOne = fg.controls[form_ctrl_one];
+            const fieldTwo = fg.controls[form_ctrl_two];
+            if (fieldOne && fieldTwo) {
+                if(!fieldOne.value) {
+                    fieldOne.setErrors({ 'required': true });
+                }
+                if(!fieldTwo.value) {
+                    fieldTwo.setErrors({ 'required': true });
+                }
+                if(fieldOne.value || fieldTwo.value) {
+                    if (fieldOne.value !== fieldTwo.value) {
+                        fieldOne.setErrors({ 'password_mismatch': true });
+                        fieldTwo.setErrors({ 'password_mismatch': true });
+                    } else {
+                        fieldOne.setErrors(null);
+                        fieldTwo.setErrors(null);
+                    }
+                }
             }
         }
     }

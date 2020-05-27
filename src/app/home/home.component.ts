@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { CustomValidator } from 'src/shared/validators/custom-validator';
 
 @Component({
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
         lastName: ['', Validators.required],
         passsword: [''],
         confirm_passsword: [''],
-    }, {validator: CustomValidator.passwordValidator});
+    }, {validator: CustomValidator.passwordValidator('passsword', 'confirm_passsword')});
   }
 
   onSubmit() {
@@ -29,5 +29,9 @@ export class HomeComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls; }
+
+  controlHasError(control: AbstractControl) {
+    return control.errors;
+  }
 
 }
