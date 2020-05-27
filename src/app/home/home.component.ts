@@ -14,8 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
       this.registerForm = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        username: ['', Validators.required],
         passsword: [''],
         confirm_passsword: [''],
     }, {validator: CustomValidator.passwordValidator('passsword', 'confirm_passsword')});
@@ -23,15 +22,10 @@ export class HomeComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log('Form?', this.registerForm.errors); // true or false
     console.log('Valid?', this.registerForm.valid); // true or false
     console.log('Value', this.registerForm.value);
   }
 
   get f() { return this.registerForm.controls; }
-
-  controlHasError(control: AbstractControl) {
-    return control.errors;
-  }
 
 }
