@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
       this.registerForm = this.formBuilder.group({
         username: ['', Validators.required],
-        passsword: [''],
-        confirm_passsword: [''],
+        passsword: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+        confirm_passsword: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
     }, {validator: CustomValidator.passwordValidator('passsword', 'confirm_passsword')});
   }
 
@@ -27,5 +27,17 @@ export class HomeComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls; }
+
+  controlHasErrors(control: AbstractControl) {
+    if (control.errors) {
+      let hasError: boolean = false;
+      Object.keys(control.errors).forEach((err) => {
+        hasError = hasError || control.errors[err];
+      })
+      return hasError;
+    }
+  }
+
+
 
 }

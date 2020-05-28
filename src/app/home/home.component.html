@@ -7,31 +7,36 @@
                     <div class="form-group col-12">
                         <label>User Name</label>
                         <input type="text" formControlName="username" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            [ngClass]="{ 'is-invalid': submitted && controlHasErrors(f.username) }" />
+                        <div *ngIf="submitted && controlHasErrors(f.username)" class="invalid-feedback">
                             <div *ngIf="f.username.errors?.required">User Name is required</div>
                         </div>
                     </div>
                     <div class="form-group col-12">
                         <label>Password</label>
                         <input type="text" formControlName="passsword" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.passsword.errors }" />
-                        <div *ngIf="submitted && f.passsword.errors" class="invalid-feedback">
+                            [ngClass]="{ 'is-invalid': submitted && controlHasErrors(f.passsword) }" />
+                        <div *ngIf="submitted && controlHasErrors(f.passsword)" class="invalid-feedback">
                             <div *ngIf="f.passsword.errors?.required">Password is required</div>
                             <div *ngIf="f.passsword.errors?.password_mismatch">Password mismatch</div>
+                            <div *ngIf="f.passsword.errors?.minlength">Min length error</div>
+                            <div *ngIf="f.passsword.errors?.maxlength">Max length error</div>
+                            
                         </div>
                     </div>
                     <div class="form-group col-12">
                         <label>Confirm Password</label>
                         <input type="text" formControlName="confirm_passsword" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.confirm_passsword.errors }" />
-                        <div *ngIf="submitted && f.confirm_passsword.errors" class="invalid-feedback">
+                            [ngClass]="{ 'is-invalid': submitted && controlHasErrors(f.confirm_passsword) }" />
+                        <div *ngIf="submitted && controlHasErrors(f.confirm_passsword)" class="invalid-feedback">
                             <div *ngIf="f.confirm_passsword.errors?.required">Confirm Password is required</div>
                             <div *ngIf="f.confirm_passsword.errors?.password_mismatch">Password mismatch</div>
+                            <div *ngIf="f.confirm_passsword.errors?.minlength">Min length error</div>
+                            <div *ngIf="f.confirm_passsword.errors?.maxlength">Max length error</div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mr-1" type="submit">Register</button>
+                        <button class="btn btn-primary ml-auto mr-1" type="submit">Register</button>
                     </div>
                 </div>
             </form>
