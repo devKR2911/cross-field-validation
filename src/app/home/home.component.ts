@@ -28,15 +28,15 @@ export class HomeComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
-  controlHasErrors(control: AbstractControl) {
-    if (control.errors) {
-      let hasError: boolean = false;
-      Object.keys(control.errors).forEach((err) => {
-        hasError = hasError || control.errors[err];
-      })
-      return hasError;
-    }
-  }
+  // controlHasErrors(control: AbstractControl) {
+  //   if (control.errors) {
+  //     let hasError: boolean = false;
+  //     Object.keys(control.errors).forEach((err) => {
+  //       hasError = hasError || control.errors[err];
+  //     })
+  //     return hasError;
+  //   }
+  // }
 
 
 
