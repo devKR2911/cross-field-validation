@@ -10,4 +10,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 This project is created to demonstrate the working of cross field validation in angular
 
 ## Screenshot
-![Screenshot](./src/assets/screenshot.png?raw=true "Screenshot")
+![Screenshot](/src/assets/screenshot.png?raw=true "Screenshot")
